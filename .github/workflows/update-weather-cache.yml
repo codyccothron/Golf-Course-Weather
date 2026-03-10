@@ -7,14 +7,13 @@ on:
 
 concurrency:
   group: weather-cache-refresh
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write
 
 jobs:
   refresh-cache:
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
