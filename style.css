@@ -5,7 +5,7 @@
     --secondary-light: #6B4C8A;
     --light-bg: #f8f9fa;
     --dark-text: #2c3e50;
-    --bg-image: url('../processed-BB04B71E-F151-44E0-BD21-584A71C1A0BB.jpg');
+    --bg-image: url('./processed-BB04B71E-F151-44E0-BD21-584A71C1A0BB.jpg');
 }
 
 body {
@@ -187,7 +187,7 @@ body {
 
 .condition-item {
     padding: 20px;
-    background: rgba(255, 255, 255, 1.0);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 10px;
     text-align: center;
     border-left: 4px solid var(--primary-color);
@@ -196,6 +196,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(6px);
 }
 
 .condition-item:hover {
@@ -257,7 +258,7 @@ body {
 }
 
 .forecast-card {
-    background: var(--secondary-color);
+    background: rgba(75, 45, 111, 0.78);
     border: none;
     border-radius: 12px;
     padding: 20px;
@@ -265,6 +266,7 @@ body {
     color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(6px);
 }
 
 .forecast-card:hover {
