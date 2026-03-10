@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Eagle Golf Club Weather</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="weather-container">
+        <!-- Header with Logo Section -->
+        <div class="header-section">
+            <div>
+                <img src="logo (1).png" alt="Logo">
+            </div>
+            <div class="display-2">
+                <h1>Golden Eagle Golf Club Weather</h1>
+                <h5 class="text-success">Course Hours: Sun - Sat 7:00 AM - 6:00 PM CST</h5>
+            </div>
+        </div>
+
+        <!-- Current Weather Display -->
+        <div class="current-weather">
+            <div class="weather-icon">
+                <span id='lblIcon'><i class="bi bi-brightness-high"></i></span>
+            </div>
+            <div class="weather-description" id="txtDescription"></div>
+            <div class="temperature-display">
+                <span id="lblCurrentTemp"></span><span style="font-size: 2.5rem; opacity: 0.7;">°F</span>
+            </div>
+            <div class="temp-range">
+                <span id="lblLow"></span> — <span id="lblHigh"></span>
+            </div>
+        </div>
+
+        <!-- Current Conditions Details -->
+        <div class="conditions-section">
+            <h2><i class="bi bi-clock"></i> Current Conditions</h2>
+            <div class="condition-grid">
+                <div class="condition-item">
+                    <div class="condition-label"><i class="bi bi-droplet"></i> Humidity</div>
+                    <div class="condition-value" id="txtHumidityPct">—</div>
+                </div>
+                <div class="condition-item">
+                    <div class="condition-label"><i class="bi bi-wind"></i> Wind Speed</div>
+                    <div class="condition-value" id="txtWindMPH">—</div>
+                </div>
+                <div class="condition-item">
+                    <div class="condition-label"><i class="bi bi-arrow-up-circle"></i> Wind Gust</div>
+                    <div class="condition-value" id="txtWindGust">—</div>
+                </div>
+                <div class="condition-item">
+                    <div class="condition-label"><i class="bi bi-compass"></i> Wind Direction</div>
+                    <div class="condition-value" id="txtDirection">—</div>
+                </div>
+                <div class="sunrise-sunset-row">
+                    <div class="condition-item">
+                        <div class="condition-label"><i class="bi bi-sunrise"></i> Sunrise</div>
+                        <div class="condition-value" id="lblSunrise">—</div>
+                    </div>
+                    <div class="condition-item">
+                        <div class="condition-label"><i class="bi bi-sunset"></i> Sunset</div>
+                        <div class="condition-value" id="lblSunset">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7-Day Forecast Section -->
+        <div class="forecast-section">
+            <h2><i class="bi bi-calendar-week"></i> 7-Day Forecast</h2>
+            <div class="forecast-grid">
+                <div class="forecast-card">
+                    <div class="forecast-day">Today</div>
+                    <div class="forecast-icon"><span id='lblIcon-today'><i class="bi bi-brightness-high"></i></span></div>
+                    <div class="forecast-desc" id="txtDescription-today"></div>
+                    <div class="forecast-temps"><span id="lblLow-today"></span> — <span id="lblHigh-today"></span></div>
+                </div>
+
+                <div class="forecast-card">
+                    <div class="forecast-day">Tomorrow</div>
+                    <div class="forecast-icon"><span id='lblIcon-tomorrow'><i class="bi bi-brightness-high"></i></span></div>
+                    <div class="forecast-desc" id="txtDescription-tomorrow"></div>
+                    <div class="forecast-temps"><span id="lblLow-tomorrow"></span> — <span id="lblHigh-tomorrow"></span></div>
+                </div>
+
+                <div class="forecast-card">
+                    <div class="forecast-day">Day 3</div>
+                    <div class="forecast-icon"><span id='lblIcon-day3'><i class="bi bi-brightness-high"></i></span></div>
+                    <div class="forecast-desc" id="txtDescription-day3"></div>
+                    <div class="forecast-temps"><span id="lblLow-day3"></span> — <span id="lblHigh-day3"></span></div>
+                </div>
+
+                <div class="forecast-card">
+                    <div class="forecast-day">Day 4</div>
+                    <div class="forecast-icon"><span id='lblIcon-day4'><i class="bi bi-brightness-high"></i></span></div>
+                    <div class="forecast-desc" id="txtDescription-day4"></div>
+                    <div class="forecast-temps"><span id="lblLow-day4"></span> — <span id="lblHigh-day4"></span></div>
+                </div>
+
+                <div class="forecast-card">
+                    <div class="forecast-day">Day 5</div>
+                    <div class="forecast-icon"><span id='lblIcon-day5'><i class="bi bi-brightness-high"></i></span></div>
+                    <div class="forecast-desc" id="txtDescription-day5"></div>
+                    <div class="forecast-temps"><span id="lblLow-day5"></span> — <span id="lblHigh-day5"></span></div>
+                </div>
+
+                <div class="forecast-card">
+                    <div class="forecast-day">Day 6</div>
+                    <div class="forecast-icon"><span id='lblIcon-day6'><i class="bi bi-brightness-high"></i></span></div>
+                    <div class="forecast-desc" id="txtDescription-day6"></div>
+                    <div class="forecast-temps"><span id="lblLow-day6"></span> — <span id="lblHigh-day6"></span></div>
+                </div>
+
+                <div class="forecast-card">
+                    <div class="forecast-day">Day 7</div>
+                    <div class="forecast-icon"><span id='lblIcon-day7'><i class="bi bi-brightness-high"></i></span></div>
+                    <div class="forecast-desc" id="txtDescription-day7"></div>
+                    <div class="forecast-temps"><span id="lblLow-day7"></span> — <span id="lblHigh-day7"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="js/courses.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
