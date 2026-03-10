@@ -1,7 +1,4 @@
 //alert("I am working")
- 
-const strBaseWeatherAPIURL = 'https://api.open-meteo.com/v1/forecast?'
-const strAddWeatherAPIUrl = '&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_hours,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&hourly=temperature_2m,relative_humidity_2m,precipitation,precipitation_probability,weather_code,cloud_cover,soil_temperature_0cm,wind_speed_10m,wind_speed_80m,wind_direction_10m,wind_direction_80m,wind_gusts_10m,soil_moisture_0_to_1cm,visibility,uv_index,is_day&current=temperature_2m,relative_humidity_2m,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation,weather_code,cloud_cover&timezone=America%2FChicago&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch'
 const WEATHER_REFRESH_MS = 15 * 60 * 1000;
 const WEATHER_CACHE_PREFIX = 'weatherCache:';
 const SHARED_WEATHER_CACHE_URL = './weather-cache.json';
@@ -162,6 +159,29 @@ function getIconColor(weatherCode) {
     return '#FFD700'; // Default to gold
 }
 
+function showWeatherUnavailable() {
+    document.querySelector('#lblCurrentTemp').innerHTML = '—';
+    document.querySelector('#lblLow').innerHTML = '—';
+    document.querySelector('#lblHigh').innerHTML = '—';
+    document.querySelector('#lblIcon').innerHTML = '<i class="bi bi-cloud-slash" style="color: #9CA3AF;"></i>';
+    document.querySelector('#txtDescription').innerHTML = `
+        <p class="fw-bold text-center">Weather Unavailable</p>
+        <p class="text-muted">Data is temporarily unavailable. Please check back shortly.</p>
+    `;
+    ['today','tomorrow','day3','day4','day5','day6','day7'].forEach(day => {
+        document.querySelector(`#lblLow-${day}`).innerHTML = '—';
+        document.querySelector(`#lblHigh-${day}`).innerHTML = '—';
+        document.querySelector(`#lblIcon-${day}`).innerHTML = '<i class="bi bi-cloud-slash"></i>';
+        document.querySelector(`#txtDescription-${day}`).innerHTML = '<p class="fw-bold">Unavailable</p>';
+    });
+    document.querySelector('#txtHumidityPct').innerHTML = '—';
+    document.querySelector('#txtWindMPH').innerHTML = '—';
+    document.querySelector('#txtWindGust').innerHTML = '—';
+    document.querySelector('#txtDirection').innerHTML = '—';
+    document.querySelector('#lblSunrise').innerHTML = '—';
+    document.querySelector('#lblSunset').innerHTML = '—';
+}
+
 async function getWeatherData(strLat, strLong, forceRefresh = false){
     let objData = null;
 
@@ -174,22 +194,8 @@ async function getWeatherData(strLat, strLong, forceRefresh = false){
     }
 
     if (!objData) {
-        let strWeatherAPIURL = strBaseWeatherAPIURL + `latitude=${strLat}&longitude=${strLong}` + strAddWeatherAPIUrl
-        const objResponse = await fetch(strWeatherAPIURL,
-                               {
-                                method:'GET',
-                                headers: {
-                                    'Content-Type':'application/json'
-                                }
-                                }
-                            )
-        if(!objResponse.ok){
-            alert('Error getting data')
-            return;
-        }
-
-        objData = await objResponse.json()
-        setCachedWeather(strLat, strLong, objData);
+        showWeatherUnavailable();
+        return;
     }
 
         document.querySelector('#lblCurrentTemp').innerHTML = objData.current.temperature_2m + '°'
