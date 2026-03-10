@@ -2,6 +2,41 @@
  
 const strBaseWeatherAPIURL = 'https://api.open-meteo.com/v1/forecast?'
 const strAddWeatherAPIUrl = '&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_hours,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&hourly=temperature_2m,relative_humidity_2m,precipitation,precipitation_probability,weather_code,cloud_cover,soil_temperature_0cm,wind_speed_10m,wind_speed_80m,wind_direction_10m,wind_direction_80m,wind_gusts_10m,soil_moisture_0_to_1cm,visibility,uv_index,is_day&current=temperature_2m,relative_humidity_2m,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation,weather_code,cloud_cover&timezone=America%2FChicago&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch'
+const WEATHER_REFRESH_MS = 15 * 60 * 1000;
+const WEATHER_CACHE_PREFIX = 'weatherCache:';
+
+let activeLocation = { lat: '36.1625', long: '-85.4988' };
+let refreshTimerId = null;
+
+function getWeatherCacheKey(strLat, strLong) {
+    return `${WEATHER_CACHE_PREFIX}${strLat},${strLong}`;
+}
+
+function getCachedWeather(strLat, strLong) {
+    const cacheKey = getWeatherCacheKey(strLat, strLong);
+    const rawCache = localStorage.getItem(cacheKey);
+
+    if (!rawCache) {
+        return null;
+    }
+
+    try {
+        const parsedCache = JSON.parse(rawCache);
+        const isFresh = Date.now() - parsedCache.timestamp < WEATHER_REFRESH_MS;
+        return isFresh ? parsedCache.data : null;
+    } catch (err) {
+        localStorage.removeItem(cacheKey);
+        return null;
+    }
+}
+
+function setCachedWeather(strLat, strLong, weatherData) {
+    const cacheKey = getWeatherCacheKey(strLat, strLong);
+    localStorage.setItem(cacheKey, JSON.stringify({
+        timestamp: Date.now(),
+        data: weatherData
+    }));
+}
 
 // Function to convert wind direction degrees to N/S/E/W
 function getWindDirection(degrees) {
@@ -79,20 +114,32 @@ function getIconColor(weatherCode) {
     return '#FFD700'; // Default to gold
 }
 
-async function getWeatherData(strLat, strLong){
-    let strWeatherAPIURL = strBaseWeatherAPIURL + `latitude=${strLat}&longitude=${strLong}` + strAddWeatherAPIUrl
-    const objResponse = await fetch(strWeatherAPIURL,
-                           {
-                            method:'GET',
-                            headers: {
-                                'Content-Type':'application/json'
-                            }
-                            }
-                        )
-    if(!objResponse.ok){
-        alert('Error getting data')
-    } else {
-        const objData = await objResponse.json()
+async function getWeatherData(strLat, strLong, forceRefresh = false){
+    let objData = null;
+
+    if (!forceRefresh) {
+        objData = getCachedWeather(strLat, strLong);
+    }
+
+    if (!objData) {
+        let strWeatherAPIURL = strBaseWeatherAPIURL + `latitude=${strLat}&longitude=${strLong}` + strAddWeatherAPIUrl
+        const objResponse = await fetch(strWeatherAPIURL,
+                               {
+                                method:'GET',
+                                headers: {
+                                    'Content-Type':'application/json'
+                                }
+                                }
+                            )
+        if(!objResponse.ok){
+            alert('Error getting data')
+            return;
+        }
+
+        objData = await objResponse.json()
+        setCachedWeather(strLat, strLong, objData);
+    }
+
         document.querySelector('#lblCurrentTemp').innerHTML = objData.current.temperature_2m + '°'
  
         let strMinTemp = objData.daily.temperature_2m_min[0] + '°'
@@ -589,8 +636,31 @@ async function getWeatherData(strLat, strLong){
         
         document.querySelector('#lblSunrise').innerHTML = sunriseFormatted
         document.querySelector('#lblSunset').innerHTML = sunsetFormatted
-    }
 }
+
+function setActiveLocation(strLat, strLong) {
+    activeLocation = { lat: String(strLat), long: String(strLong) };
+}
+
+function refreshActiveLocation(forceRefresh = false) {
+    return getWeatherData(activeLocation.lat, activeLocation.long, forceRefresh);
+}
+
+function startWeatherAutoRefresh() {
+    if (refreshTimerId) {
+        clearInterval(refreshTimerId);
+    }
+
+    refreshTimerId = setInterval(() => {
+        refreshActiveLocation(true);
+    }, WEATHER_REFRESH_MS);
+}
+
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        refreshActiveLocation(false);
+    }
+});
  
 /*
 // query selector to call get Weather on chagne
@@ -598,10 +668,13 @@ document.querySelector('#FavCourses').addEventListener('change', function(){
     if(document.querySelector('#FavCourses').value != 'None'){
         let strLat = document.querySelector('#FavCourses').options[document.querySelector('#FavCourses').selectedIndex].dataset.lat
         let strLong = document.querySelector('#FavCourses').options[document.querySelector('#FavCourses').selectedIndex].dataset.long
-        getWeatherData(strLat, strLong)
+        setActiveLocation(strLat, strLong)
+        refreshActiveLocation(false)
     }
 
 })*/
 
 // Default Location - Golden Eagle Golf Club
-getWeatherData('36.1625', '-85.4988')
+setActiveLocation('36.1625', '-85.4988');
+refreshActiveLocation(false);
+startWeatherAutoRefresh();
