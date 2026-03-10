@@ -4,9 +4,23 @@ const strBaseWeatherAPIURL = 'https://api.open-meteo.com/v1/forecast?'
 const strAddWeatherAPIUrl = '&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_hours,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&hourly=temperature_2m,relative_humidity_2m,precipitation,precipitation_probability,weather_code,cloud_cover,soil_temperature_0cm,wind_speed_10m,wind_speed_80m,wind_direction_10m,wind_direction_80m,wind_gusts_10m,soil_moisture_0_to_1cm,visibility,uv_index,is_day&current=temperature_2m,relative_humidity_2m,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation,weather_code,cloud_cover&timezone=America%2FChicago&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch'
 const WEATHER_REFRESH_MS = 15 * 60 * 1000;
 const WEATHER_CACHE_PREFIX = 'weatherCache:';
+const SHARED_WEATHER_CACHE_URL = './weather-cache.json';
 
 let activeLocation = { lat: '36.1625', long: '-85.4988' };
 let refreshTimerId = null;
+let sharedWeatherPayload = null;
+let sharedWeatherFetchedAt = 0;
+
+function getLocationKey(strLat, strLong) {
+    const lat = Number(strLat);
+    const lon = Number(strLong);
+
+    if (Number.isFinite(lat) && Number.isFinite(lon)) {
+        return `${lat.toFixed(4)},${lon.toFixed(4)}`;
+    }
+
+    return `${strLat},${strLong}`;
+}
 
 function getWeatherCacheKey(strLat, strLong) {
     return `${WEATHER_CACHE_PREFIX}${strLat},${strLong}`;
@@ -36,6 +50,40 @@ function setCachedWeather(strLat, strLong, weatherData) {
         timestamp: Date.now(),
         data: weatherData
     }));
+}
+
+async function getSharedWeather(strLat, strLong) {
+    const now = Date.now();
+    const needsRefetch = !sharedWeatherPayload || (now - sharedWeatherFetchedAt > 2 * 60 * 1000);
+
+    if (needsRefetch) {
+        try {
+            const response = await fetch(SHARED_WEATHER_CACHE_URL, { cache: 'no-store' });
+            if (!response.ok) {
+                return null;
+            }
+            sharedWeatherPayload = await response.json();
+            sharedWeatherFetchedAt = now;
+        } catch (err) {
+            return null;
+        }
+    }
+
+    if (!sharedWeatherPayload || !sharedWeatherPayload.locations) {
+        return null;
+    }
+
+    const generatedAt = Date.parse(sharedWeatherPayload.generatedAt || '');
+    if (!Number.isFinite(generatedAt)) {
+        return null;
+    }
+
+    if (now - generatedAt > WEATHER_REFRESH_MS + 2 * 60 * 1000) {
+        return null;
+    }
+
+    const locationKey = getLocationKey(strLat, strLong);
+    return sharedWeatherPayload.locations[locationKey] || null;
 }
 
 // Function to convert wind direction degrees to N/S/E/W
@@ -119,6 +167,10 @@ async function getWeatherData(strLat, strLong, forceRefresh = false){
 
     if (!forceRefresh) {
         objData = getCachedWeather(strLat, strLong);
+    }
+
+    if (!objData) {
+        objData = await getSharedWeather(strLat, strLong);
     }
 
     if (!objData) {
