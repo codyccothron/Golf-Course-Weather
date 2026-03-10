@@ -70,15 +70,6 @@ async function getSharedWeather(strLat, strLong) {
         return null;
     }
 
-    const generatedAt = Date.parse(sharedWeatherPayload.generatedAt || '');
-    if (!Number.isFinite(generatedAt)) {
-        return null;
-    }
-
-    if (now - generatedAt > WEATHER_REFRESH_MS + 2 * 60 * 1000) {
-        return null;
-    }
-
     const locationKey = getLocationKey(strLat, strLong);
     return sharedWeatherPayload.locations[locationKey] || null;
 }
