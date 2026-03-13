@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-03-13T20:57:17.734Z",
+  "generatedAt": "2026-03-13T21:27:54.292Z",
   "ttlMinutes": 15,
   "source": "open-meteo",
   "locations": {
     "36.1625,-85.4988": {
       "latitude": 36.165512,
       "longitude": -85.48526,
-      "generationtime_ms": 1.5513896942138672,
+      "generationtime_ms": 3.0742883682250977,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -25,17 +25,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-13T15:45",
+        "time": "2026-03-13T16:15",
         "interval": 900,
-        "temperature_2m": 63.1,
+        "temperature_2m": 63,
         "relative_humidity_2m": 25,
         "is_day": 1,
-        "wind_speed_10m": 15.8,
-        "wind_direction_10m": 237,
-        "wind_gusts_10m": 25.1,
+        "wind_speed_10m": 14.5,
+        "wind_direction_10m": 243,
+        "wind_gusts_10m": 23,
         "precipitation": 0,
         "weather_code": 0,
-        "cloud_cover": 3
+        "cloud_cover": 0
       },
       "hourly_units": {
         "time": "iso8601",
@@ -3076,7 +3076,7 @@
     "36.1767,-85.4502": {
       "latitude": 36.18872,
       "longitude": -85.44779,
-      "generationtime_ms": 0.6906986236572266,
+      "generationtime_ms": 0.9638071060180664,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -3095,17 +3095,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-13T15:45",
+        "time": "2026-03-13T16:15",
         "interval": 900,
-        "temperature_2m": 63.3,
+        "temperature_2m": 63.2,
         "relative_humidity_2m": 25,
         "is_day": 1,
-        "wind_speed_10m": 16.9,
-        "wind_direction_10m": 238,
-        "wind_gusts_10m": 25.9,
+        "wind_speed_10m": 15.5,
+        "wind_direction_10m": 243,
+        "wind_gusts_10m": 23.9,
         "precipitation": 0,
         "weather_code": 0,
-        "cloud_cover": 2
+        "cloud_cover": 0
       },
       "hourly_units": {
         "time": "iso8601",
@@ -6146,7 +6146,7 @@
     "36.1550,-85.6364": {
       "latitude": 36.152725,
       "longitude": -85.622,
-      "generationtime_ms": 0.9347200393676758,
+      "generationtime_ms": 1.611471176147461,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -6165,17 +6165,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-13T15:45",
+        "time": "2026-03-13T16:15",
         "interval": 900,
-        "temperature_2m": 63.9,
+        "temperature_2m": 64,
         "relative_humidity_2m": 25,
         "is_day": 1,
-        "wind_speed_10m": 16.3,
-        "wind_direction_10m": 240,
-        "wind_gusts_10m": 25.1,
+        "wind_speed_10m": 14.7,
+        "wind_direction_10m": 244,
+        "wind_gusts_10m": 23,
         "precipitation": 0,
         "weather_code": 0,
-        "cloud_cover": 7
+        "cloud_cover": 2
       },
       "hourly_units": {
         "time": "iso8601",
@@ -9216,7 +9216,7 @@
     "35.9500,-85.0300": {
       "latitude": 35.95155,
       "longitude": -85.01609,
-      "generationtime_ms": 1.7313957214355469,
+      "generationtime_ms": 1.5358924865722656,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -9235,14 +9235,14 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-13T15:45",
+        "time": "2026-03-13T16:15",
         "interval": 900,
-        "temperature_2m": 61.5,
-        "relative_humidity_2m": 25,
+        "temperature_2m": 61,
+        "relative_humidity_2m": 27,
         "is_day": 1,
-        "wind_speed_10m": 17.1,
-        "wind_direction_10m": 243,
-        "wind_gusts_10m": 26.2,
+        "wind_speed_10m": 16.2,
+        "wind_direction_10m": 248,
+        "wind_gusts_10m": 24.6,
         "precipitation": 0,
         "weather_code": 0,
         "cloud_cover": 2
