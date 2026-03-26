@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-03-26T20:49:34.737Z",
+  "generatedAt": "2026-03-26T21:21:20.765Z",
   "ttlMinutes": 15,
   "source": "open-meteo",
   "locations": {
     "36.1625,-85.4988": {
       "latitude": 36.165512,
       "longitude": -85.48526,
-      "generationtime_ms": 1.2704133987426758,
+      "generationtime_ms": 0.782012939453125,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -25,17 +25,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-26T15:45",
+        "time": "2026-03-26T16:15",
         "interval": 900,
         "temperature_2m": 78.5,
         "relative_humidity_2m": 47,
         "is_day": 1,
-        "wind_speed_10m": 18.4,
-        "wind_direction_10m": 207,
-        "wind_gusts_10m": 26.6,
+        "wind_speed_10m": 17.8,
+        "wind_direction_10m": 208,
+        "wind_gusts_10m": 25.7,
         "precipitation": 0,
         "weather_code": 0,
-        "cloud_cover": 7
+        "cloud_cover": 2
       },
       "hourly_units": {
         "time": "iso8601",
@@ -3076,7 +3076,7 @@
     "36.1767,-85.4502": {
       "latitude": 36.18872,
       "longitude": -85.44779,
-      "generationtime_ms": 0.9807348251342773,
+      "generationtime_ms": 1.059889793395996,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -3095,17 +3095,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-26T15:45",
+        "time": "2026-03-26T16:15",
         "interval": 900,
-        "temperature_2m": 78.6,
-        "relative_humidity_2m": 48,
+        "temperature_2m": 78.4,
+        "relative_humidity_2m": 47,
         "is_day": 1,
-        "wind_speed_10m": 18.9,
-        "wind_direction_10m": 209,
-        "wind_gusts_10m": 27.3,
+        "wind_speed_10m": 18.1,
+        "wind_direction_10m": 210,
+        "wind_gusts_10m": 26.4,
         "precipitation": 0,
         "weather_code": 0,
-        "cloud_cover": 7
+        "cloud_cover": 1
       },
       "hourly_units": {
         "time": "iso8601",
@@ -6146,7 +6146,7 @@
     "36.1550,-85.6364": {
       "latitude": 36.152725,
       "longitude": -85.622,
-      "generationtime_ms": 1.5864372253417969,
+      "generationtime_ms": 0.8777379989624023,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -6165,17 +6165,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-26T15:45",
+        "time": "2026-03-26T16:15",
         "interval": 900,
-        "temperature_2m": 79.2,
+        "temperature_2m": 79.3,
         "relative_humidity_2m": 46,
         "is_day": 1,
-        "wind_speed_10m": 18,
+        "wind_speed_10m": 17.3,
         "wind_direction_10m": 205,
-        "wind_gusts_10m": 25.1,
+        "wind_gusts_10m": 24.4,
         "precipitation": 0,
         "weather_code": 0,
-        "cloud_cover": 8
+        "cloud_cover": 7
       },
       "hourly_units": {
         "time": "iso8601",
@@ -9216,7 +9216,7 @@
     "35.9500,-85.0300": {
       "latitude": 35.95155,
       "longitude": -85.01609,
-      "generationtime_ms": 1.0219812393188477,
+      "generationtime_ms": 1.6776323318481445,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -9235,17 +9235,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-03-26T15:45",
+        "time": "2026-03-26T16:15",
         "interval": 900,
-        "temperature_2m": 75.8,
+        "temperature_2m": 75.5,
         "relative_humidity_2m": 53,
         "is_day": 1,
-        "wind_speed_10m": 15.9,
+        "wind_speed_10m": 15.3,
         "wind_direction_10m": 209,
-        "wind_gusts_10m": 22.6,
+        "wind_gusts_10m": 21.7,
         "precipitation": 0,
         "weather_code": 1,
-        "cloud_cover": 21
+        "cloud_cover": 20
       },
       "hourly_units": {
         "time": "iso8601",
