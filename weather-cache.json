@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-04-04T14:50:16.937Z",
+  "generatedAt": "2026-04-04T15:20:19.790Z",
   "ttlMinutes": 15,
   "source": "open-meteo",
   "locations": {
     "36.1625,-85.4988": {
       "latitude": 36.165512,
       "longitude": -85.48526,
-      "generationtime_ms": 1.5711784362792969,
+      "generationtime_ms": 1.6434192657470703,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -25,17 +25,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-04-04T09:45",
+        "time": "2026-04-04T10:15",
         "interval": 900,
-        "temperature_2m": 74.1,
-        "relative_humidity_2m": 66,
+        "temperature_2m": 75.1,
+        "relative_humidity_2m": 64,
         "is_day": 1,
-        "wind_speed_10m": 15.2,
-        "wind_direction_10m": 194,
-        "wind_gusts_10m": 24.6,
+        "wind_speed_10m": 16.7,
+        "wind_direction_10m": 196,
+        "wind_gusts_10m": 26.6,
         "precipitation": 0,
         "weather_code": 1,
-        "cloud_cover": 21
+        "cloud_cover": 27
       },
       "hourly_units": {
         "time": "iso8601",
@@ -3076,7 +3076,7 @@
     "36.1767,-85.4502": {
       "latitude": 36.18872,
       "longitude": -85.44779,
-      "generationtime_ms": 1.1957883834838867,
+      "generationtime_ms": 3.936171531677246,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -3095,17 +3095,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-04-04T09:45",
+        "time": "2026-04-04T10:15",
         "interval": 900,
-        "temperature_2m": 74.4,
-        "relative_humidity_2m": 65,
+        "temperature_2m": 75.6,
+        "relative_humidity_2m": 63,
         "is_day": 1,
-        "wind_speed_10m": 15.2,
-        "wind_direction_10m": 194,
-        "wind_gusts_10m": 25.1,
+        "wind_speed_10m": 16.8,
+        "wind_direction_10m": 197,
+        "wind_gusts_10m": 26.8,
         "precipitation": 0,
-        "weather_code": 0,
-        "cloud_cover": 19
+        "weather_code": 1,
+        "cloud_cover": 25
       },
       "hourly_units": {
         "time": "iso8601",
@@ -6146,7 +6146,7 @@
     "36.1550,-85.6364": {
       "latitude": 36.152725,
       "longitude": -85.622,
-      "generationtime_ms": 1.115560531616211,
+      "generationtime_ms": 1.1820793151855469,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -6165,17 +6165,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-04-04T09:45",
+        "time": "2026-04-04T10:15",
         "interval": 900,
-        "temperature_2m": 75,
-        "relative_humidity_2m": 64,
+        "temperature_2m": 76,
+        "relative_humidity_2m": 62,
         "is_day": 1,
-        "wind_speed_10m": 15.8,
-        "wind_direction_10m": 193,
-        "wind_gusts_10m": 24.6,
+        "wind_speed_10m": 17.8,
+        "wind_direction_10m": 197,
+        "wind_gusts_10m": 27.1,
         "precipitation": 0,
         "weather_code": 1,
-        "cloud_cover": 24
+        "cloud_cover": 32
       },
       "hourly_units": {
         "time": "iso8601",
@@ -9216,7 +9216,7 @@
     "35.9500,-85.0300": {
       "latitude": 35.95155,
       "longitude": -85.01609,
-      "generationtime_ms": 2.480030059814453,
+      "generationtime_ms": 1.3371706008911133,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -9235,17 +9235,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-04-04T09:45",
+        "time": "2026-04-04T10:15",
         "interval": 900,
-        "temperature_2m": 70.1,
-        "relative_humidity_2m": 75,
+        "temperature_2m": 71.7,
+        "relative_humidity_2m": 72,
         "is_day": 1,
-        "wind_speed_10m": 13.7,
-        "wind_direction_10m": 184,
+        "wind_speed_10m": 14.1,
+        "wind_direction_10m": 191,
         "wind_gusts_10m": 23,
         "precipitation": 0,
-        "weather_code": 0,
-        "cloud_cover": 11
+        "weather_code": 1,
+        "cloud_cover": 21
       },
       "hourly_units": {
         "time": "iso8601",
