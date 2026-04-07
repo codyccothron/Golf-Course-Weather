@@ -33,7 +33,7 @@ jobs:
           node-version: '20'
 
       - name: Update weather cache
-        run: node app.js
+        run: node update-weather-cache.mjs
 
       - name: Show generated file
         run: |
