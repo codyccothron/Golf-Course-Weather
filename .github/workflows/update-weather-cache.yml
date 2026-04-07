@@ -27,7 +27,7 @@ jobs:
           node-version: '20'
 
       - name: Update weather cache
-        run: node update-weather-cache.mjs
+        run: node update-weather-cache.js
 
       - name: Show generated file
         run: |
