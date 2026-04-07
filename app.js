@@ -49,16 +49,24 @@ function setCachedWeather(strLat, strLong, weatherData) {
     }));
 }
 
-async function getSharedWeather(strLat, strLong) {
+async function getSharedWeather(strLat, strLong, forceRefresh = false) {
     const now = Date.now();
-    const needsRefetch = !sharedWeatherPayload || (now - sharedWeatherFetchedAt > 2 * 60 * 1000);
+    const needsRefetch =
+        forceRefresh ||
+        !sharedWeatherPayload ||
+        (now - sharedWeatherFetchedAt > 2 * 60 * 1000);
 
     if (needsRefetch) {
         try {
-            const response = await fetch(SHARED_WEATHER_CACHE_URL, { cache: 'no-store' });
+            const refreshKey = Math.floor(Date.now() / 60000); // changes once a minute
+            const response = await fetch(`${SHARED_WEATHER_CACHE_URL}?v=${refreshKey}`, {
+                cache: 'no-store'
+            });
+
             if (!response.ok) {
                 return null;
             }
+
             sharedWeatherPayload = await response.json();
             sharedWeatherFetchedAt = now;
         } catch (err) {
@@ -181,13 +189,15 @@ async function getWeatherData(strLat, strLong, forceRefresh = false){
     }
 
     if (!objData) {
-        objData = await getSharedWeather(strLat, strLong);
+        objData = await getSharedWeather(strLat, strLong, forceRefresh);
     }
 
     if (!objData) {
         showWeatherUnavailable();
         return;
     }
+
+    setCachedWeather(strLat, strLong, objData);
 
         document.querySelector('#lblCurrentTemp').innerHTML = objData.current.temperature_2m + '°'
  
