@@ -40,7 +40,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add weather-cache.json
           git diff --staged --quiet || git commit -m "Update weather cache"
-          git pull --rebase origin HEAD
+          git pull --rebase -X theirs
           git push origin HEAD
 
       - name: Deploy to Cloudflare Pages

@@ -80,6 +80,14 @@ async function getSharedWeather(strLat, strLong, forceRefresh = false) {
         return null;
     }
 
+    // Reject the shared cache if it's older than 30 minutes — fall through to direct API
+    const generatedAt = sharedWeatherPayload.generatedAt
+        ? new Date(sharedWeatherPayload.generatedAt).getTime()
+        : 0;
+    if (Date.now() - generatedAt > 30 * 60 * 1000) {
+        return null;
+    }
+
     const locationKey = getLocationKey(strLat, strLong);
     return sharedWeatherPayload.locations[locationKey] || null;
 }
