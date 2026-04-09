@@ -2,6 +2,8 @@
 const WEATHER_REFRESH_MS = 15 * 60 * 1000;
 const WEATHER_CACHE_PREFIX = 'weatherCache:';
 const SHARED_WEATHER_CACHE_URL = './weather-cache.json';
+const OPEN_METEO_BASE = 'https://api.open-meteo.com/v1/forecast?';
+const OPEN_METEO_QUERY = '&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_hours,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&hourly=temperature_2m,relative_humidity_2m,precipitation,precipitation_probability,weather_code,cloud_cover,soil_temperature_0cm,wind_speed_10m,wind_speed_80m,wind_direction_10m,wind_direction_80m,wind_gusts_10m,soil_moisture_0_to_1cm,visibility,uv_index,is_day&current=temperature_2m,relative_humidity_2m,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation,weather_code,cloud_cover&timezone=America%2FChicago&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch';
 
 let activeLocation = { lat: '36.1625', long: '-85.4988' };
 let refreshTimerId = null;
@@ -181,6 +183,17 @@ function showWeatherUnavailable() {
     document.querySelector('#lblSunset').innerHTML = '—';
 }
 
+async function fetchWeatherFromAPI(strLat, strLong) {
+    try {
+        const url = `${OPEN_METEO_BASE}latitude=${strLat}&longitude=${strLong}${OPEN_METEO_QUERY}`;
+        const response = await fetch(url);
+        if (!response.ok) return null;
+        return response.json();
+    } catch (err) {
+        return null;
+    }
+}
+
 async function getWeatherData(strLat, strLong, forceRefresh = false){
     let objData = null;
 
@@ -190,6 +203,10 @@ async function getWeatherData(strLat, strLong, forceRefresh = false){
 
     if (!objData) {
         objData = await getSharedWeather(strLat, strLong, forceRefresh);
+    }
+
+    if (!objData) {
+        objData = await fetchWeatherFromAPI(strLat, strLong);
     }
 
     if (!objData) {
