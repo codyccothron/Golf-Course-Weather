@@ -205,12 +205,12 @@ async function fetchWeatherFromAPI(strLat, strLong) {
 async function getWeatherData(strLat, strLong, forceRefresh = false){
     let objData = null;
 
-    if (!forceRefresh) {
-        objData = getCachedWeather(strLat, strLong);
-    }
-
     if (!objData) {
         objData = await getSharedWeather(strLat, strLong, forceRefresh);
+    }
+
+    if (!objData && !forceRefresh) {
+        objData = getCachedWeather(strLat, strLong);
     }
 
     if (!objData) {
