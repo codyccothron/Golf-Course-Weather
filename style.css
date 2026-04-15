@@ -318,11 +318,13 @@ body {
 }
 
 .forecast-temps {
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 800;
     opacity: 1;
     margin-top: 12px;
     color: var(--primary-color);
+    line-height: 1.25;
+    letter-spacing: 0.25px;
 }
 
 /* Responsive */

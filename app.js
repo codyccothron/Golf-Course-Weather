@@ -5,6 +5,12 @@ const SHARED_WEATHER_CACHE_URL = './weather-cache.json';
 const OPEN_METEO_BASE = 'https://api.open-meteo.com/v1/forecast?';
 const OPEN_METEO_QUERY = '&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,uv_index_max,precipitation_sum,precipitation_hours,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant&hourly=temperature_2m,relative_humidity_2m,precipitation,precipitation_probability,weather_code,cloud_cover,soil_temperature_0cm,wind_speed_10m,wind_speed_80m,wind_direction_10m,wind_direction_80m,wind_gusts_10m,soil_moisture_0_to_1cm,visibility,uv_index,is_day&current=temperature_2m,relative_humidity_2m,is_day,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation,weather_code,cloud_cover&timezone=America%2FChicago&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch';
 
+const FORECAST_CARD_COUNT = 7;
+const WEEKDAY_FORMATTER = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    timeZone: 'America/Chicago'
+});
+
 let activeLocation = { lat: '36.1625', long: '-85.4988' };
 let refreshTimerId = null;
 let sharedWeatherPayload = null;
@@ -191,6 +197,44 @@ function showWeatherUnavailable() {
     document.querySelector('#lblSunset').innerHTML = '—';
 }
 
+function getForecastDayLabels(dailyTimes = []) {
+    const fallbackLabels = ['Today', 'Tomorrow', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
+
+    return Array.from({ length: FORECAST_CARD_COUNT }, (_, index) => {
+        if (index === 0) {
+            return 'Today';
+        }
+
+        if (index === 1) {
+            return 'Tomorrow';
+        }
+
+        const isoDate = dailyTimes[index];
+        if (!isoDate) {
+            return fallbackLabels[index];
+        }
+
+        const [year, month, day] = isoDate.split('-').map(Number);
+        if (![year, month, day].every(Number.isFinite)) {
+            return fallbackLabels[index];
+        }
+
+        const utcNoon = new Date(Date.UTC(year, month - 1, day, 12));
+        return WEEKDAY_FORMATTER.format(utcNoon);
+    });
+}
+
+function updateForecastDayLabels(dailyTimes = []) {
+    const labels = getForecastDayLabels(dailyTimes);
+    const forecastDayElements = document.querySelectorAll('.forecast-day');
+
+    forecastDayElements.forEach((element, index) => {
+        if (labels[index]) {
+            element.textContent = labels[index];
+        }
+    });
+}
+
 async function fetchWeatherFromAPI(strLat, strLong) {
     try {
         const url = `${OPEN_METEO_BASE}latitude=${strLat}&longitude=${strLong}${OPEN_METEO_QUERY}`;
@@ -224,7 +268,9 @@ async function getWeatherData(strLat, strLong, forceRefresh = false){
 
     setCachedWeather(strLat, strLong, objData);
 
-        document.querySelector('#lblCurrentTemp').innerHTML = objData.current.temperature_2m + '°'
+        document.querySelector('#lblCurrentTemp').innerHTML = objData.current.temperature_2m
+
+        updateForecastDayLabels(objData.daily.time);
  
         let strMinTemp = objData.daily.temperature_2m_min[0] + '°'
         document.querySelector('#lblLow').innerHTML = strMinTemp
