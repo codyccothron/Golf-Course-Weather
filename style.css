@@ -212,8 +212,26 @@ body {
 }
 
 .sunrise-sunset-row .condition-item {
+    width: calc((100% - 60px) / 4);
     min-width: 250px;
-    width: 250px;
+}
+
+@media (max-width: 1059px) {
+    .sunrise-sunset-row .condition-item {
+        width: calc((100% - 40px) / 3);
+    }
+}
+
+@media (max-width: 789px) {
+    .sunrise-sunset-row .condition-item {
+        width: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 519px) {
+    .sunrise-sunset-row .condition-item {
+        width: 100%;
+    }
 }
 
 .condition-label {
@@ -325,6 +343,11 @@ body {
     color: var(--primary-color);
     line-height: 1.25;
     letter-spacing: 0.25px;
+}
+
+.forecast-temps > span {
+    display: block;
+    text-align: center;
 }
 
 /* Responsive */
