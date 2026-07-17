@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-17T22:55:16.547Z",
+  "generatedAt": "2026-07-17T23:25:39.052Z",
   "ttlMinutes": 15,
   "source": "open-meteo",
   "locations": {
     "36.1625,-85.4988": {
       "latitude": 36.165512,
       "longitude": -85.48526,
-      "generationtime_ms": 3.1762123107910156,
+      "generationtime_ms": 1.1761188507080078,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -25,14 +25,14 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-07-17T17:45",
+        "time": "2026-07-17T18:15",
         "interval": 900,
-        "temperature_2m": 83,
-        "relative_humidity_2m": 76,
+        "temperature_2m": 78.2,
+        "relative_humidity_2m": 81,
         "is_day": 1,
-        "wind_speed_10m": 4,
-        "wind_direction_10m": 153,
-        "wind_gusts_10m": 5.8,
+        "wind_speed_10m": 11.6,
+        "wind_direction_10m": 113,
+        "wind_gusts_10m": 16.1,
         "precipitation": 0,
         "weather_code": 3,
         "cloud_cover": 100
@@ -3076,7 +3076,7 @@
     "36.1767,-85.4502": {
       "latitude": 36.18872,
       "longitude": -85.44779,
-      "generationtime_ms": 1.4619827270507812,
+      "generationtime_ms": 3.2312870025634766,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -3095,16 +3095,16 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-07-17T17:45",
+        "time": "2026-07-17T18:15",
         "interval": 900,
-        "temperature_2m": 82.5,
-        "relative_humidity_2m": 80,
+        "temperature_2m": 77.2,
+        "relative_humidity_2m": 85,
         "is_day": 1,
-        "wind_speed_10m": 5.7,
-        "wind_direction_10m": 159,
-        "wind_gusts_10m": 6.9,
-        "precipitation": 0.004,
-        "weather_code": 51,
+        "wind_speed_10m": 11.5,
+        "wind_direction_10m": 126,
+        "wind_gusts_10m": 14.8,
+        "precipitation": 0,
+        "weather_code": 3,
         "cloud_cover": 100
       },
       "hourly_units": {
@@ -6146,7 +6146,7 @@
     "36.1550,-85.6364": {
       "latitude": 36.152725,
       "longitude": -85.622,
-      "generationtime_ms": 0.6835460662841797,
+      "generationtime_ms": 1.2449026107788086,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -6165,17 +6165,17 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-07-17T17:45",
+        "time": "2026-07-17T18:15",
         "interval": 900,
-        "temperature_2m": 85.6,
-        "relative_humidity_2m": 58,
+        "temperature_2m": 84.2,
+        "relative_humidity_2m": 60,
         "is_day": 1,
-        "wind_speed_10m": 5.6,
-        "wind_direction_10m": 254,
-        "wind_gusts_10m": 7.4,
+        "wind_speed_10m": 4.3,
+        "wind_direction_10m": 231,
+        "wind_gusts_10m": 10.3,
         "precipitation": 0,
         "weather_code": 3,
-        "cloud_cover": 95
+        "cloud_cover": 99
       },
       "hourly_units": {
         "time": "iso8601",
@@ -9216,7 +9216,7 @@
     "35.9500,-85.0300": {
       "latitude": 35.95155,
       "longitude": -85.01609,
-      "generationtime_ms": 1.0062456130981445,
+      "generationtime_ms": 1.2323856353759766,
       "utc_offset_seconds": -18000,
       "timezone": "America/Chicago",
       "timezone_abbreviation": "GMT-5",
@@ -9235,15 +9235,15 @@
         "cloud_cover": "%"
       },
       "current": {
-        "time": "2026-07-17T17:45",
+        "time": "2026-07-17T18:15",
         "interval": 900,
-        "temperature_2m": 70.3,
+        "temperature_2m": 70.8,
         "relative_humidity_2m": 96,
         "is_day": 1,
-        "wind_speed_10m": 12.5,
-        "wind_direction_10m": 79,
-        "wind_gusts_10m": 17.2,
-        "precipitation": 0.173,
+        "wind_speed_10m": 6.6,
+        "wind_direction_10m": 303,
+        "wind_gusts_10m": 7.2,
+        "precipitation": 0.169,
         "weather_code": 65,
         "cloud_cover": 100
       },
